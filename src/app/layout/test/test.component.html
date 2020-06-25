@@ -1,0 +1,224 @@
+<div [@routerTransition]>
+    <app-page-header [heading]="'liste des tests'" [icon]="'fa-table'">
+
+
+    </app-page-header>
+    <div class="row">
+        <div class="dropdown theme-dropdown clearfix" ngbDropdown style="margin-left: 15px;">
+            <button class="btn btn-secondary" ngbDropdownToggle>
+                TYPE TEST
+            </button>
+            <div aria-labelledby="dropdownMenu1" class="dropdown-menu" ngbDropdownMenu>
+                <a class="dropdown-item" (click)=" isTestWebService = false">TEST NORMAL</a>
+                <a class="dropdown-item" (click)="isTestWebService = true">TEST WEB SERVICE</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <button *ngIf="!isTestWebService" (click)="open(content); isTestWebService = false" class="btn btn-primary"
+                style="    margin-top: 19px;
+    margin-left: 15px;
+    margin-right: 15px;">Ajouter
+            un test
+        </button>
+
+        <button *ngIf="isTestWebService" (click)="open(content2); isTestWebService = true" class="btn btn-primary"
+                style="    margin-top: 19px;
+    margin-left: 15px;
+    margin-right: 15px;">Ajouter
+            un test web Service
+        </button>
+    </div>
+
+
+    <div class="row" *ngIf="!isTestWebService">
+        <div class="col col-xl-12 col-lg-12">
+            <div class="card mb-3">
+                <!--<div class="card-header">-->
+                <!--Basic example-->
+                <!--</div>-->
+                <div class="card-body table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>#ID</th>
+                            <th>Type</th>
+                            <th>numero Port</th>
+                            <th>base</th>
+                            <th>nom Serveur</th>
+                            <th>Action</th>
+                            <!--<th></th>-->
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let test of listTests">
+                            <th scope="row">{{test.id}}</th>
+                            <td>{{test.type}}</td>
+                            <td>{{test.numeroPort}}</td>
+                            <td>{{test.base}}</td>
+                            <td>{{test.nomServeur}}</td>
+                            <td>
+                                <button style="background-color: #007bff" class="btn"
+                                        (click)="getTestById(test.id, content)">
+                                    <i class="fa fa-edit"></i>
+                                </button>
+                                <button style="background-color: red" class="btn" (click)="deleteTest(test.id)">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row" *ngIf="isTestWebService">
+        <div class="col col-xl-12 col-lg-12">
+            <div class="card mb-3">
+                <!--<div class="card-header">-->
+                <!--Basic example-->
+                <!--</div>-->
+                <div class="card-body table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>#ID</th>
+                            <th>name</th>
+                            <th>request</th>
+                            <th>response</th>
+                            <th>Action</th>
+                            <!--<th></th>-->
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let testWebServoice of listTestWebSericess">
+                            <th scope="row">{{testWebServoice.id}}</th>
+                            <td>{{testWebServoice.name}}</td>
+                            <td>{{testWebServoice.request}}</td>
+                            <td>{{testWebServoice.reponse}}</td>
+
+                            <td>
+                                <button style="background-color: #007bff" class="btn"
+                                        (click)="getTestWebServiceById(testWebServoice.id, content2)">
+                                    <i class="fa fa-edit"></i>
+                                </button>
+                                <button style="background-color: red" class="btn"
+                                        (click)="deleteTestWebService(testWebServoice.id)">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title">Ajouter un Test</h4>
+        <button (click)="d('Cross click')" aria-label="Close" class="close" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="testForm" novalidate>
+
+            <fieldset class="form-group">
+                <label>Type</label>
+                <input class="form-control"
+                       placeholder="type" formControlName="type"
+                       [ngClass]="{'error-input': type.invalid}">
+                <div *ngIf="type.invalid">
+                    <small class="form-text text-muted danger"
+                           *ngIf="type.errors.required">
+                        Ce champ est requis.
+                    </small>
+                </div>
+            </fieldset>
+
+            <fieldset class="form-group">
+                <label>Numero Port</label>
+                <input class="form-control" placeholder="numero Port" formControlName="numeroPort"/>
+            </fieldset>
+
+            <fieldset class="form-group">
+                <label>Base</label>
+                <input class="form-control" placeholder="base" formControlName="base"/>
+            </fieldset>
+
+
+            <fieldset class="form-group">
+                <label>Nom Serveur</label>
+                <input class="form-control" placeholder="nom Serveur" formControlName="nomServeur"
+                       [ngClass]="{'error-input': nomServeur.invalid}">
+                <div *ngIf="nomServeur.invalid">
+                    <small class="form-text text-muted danger"
+                           *ngIf="nomServeur.errors.required">
+                        Ce champ est requis.
+                    </small>
+                </div>
+            </fieldset>
+
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button (click)="addTest(); c('Close click')" class="btn btn-secondary" type="button">Ajouter</button>
+        <button (click)="c('Close click')" class="btn btn-secondary" type="button">Annuler</button>
+    </div>
+</ng-template>
+
+
+<ng-template #content2 let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title">Ajouter un Test Web Service</h4>
+        <button (click)="d('Cross click')" aria-label="Close" class="close" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="testWebServiceForm" novalidate>
+
+            <fieldset class="form-group">
+                <label>Name</label>
+                <input class="form-control"
+                       placeholder="name" formControlName="name"
+                       [ngClass]="{'error-input': name.invalid}">
+                <div *ngIf="name.invalid">
+                    <small class="form-text text-muted danger"
+                           *ngIf="name.errors.required">
+                        Ce champ est requis.
+                    </small>
+                </div>
+            </fieldset>
+
+            <fieldset class="form-group">
+                <label>Request</label>
+                <textarea class="form-control" placeholder="Request" formControlName="request">
+
+                </textarea>
+            </fieldset>
+
+            <fieldset class="form-group">
+                <label>Reponse</label>
+                <textarea class="form-control" placeholder="Reponse" formControlName="reponse">
+
+                </textarea>
+            </fieldset>
+
+
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button (click)="addTestWebService(); c('Close click')" class="btn btn-secondary" type="button">Ajouter</button>
+        <button (click)="c('Close click')" class="btn btn-secondary" type="button">Annuler</button>
+    </div>
+</ng-template>
+
+

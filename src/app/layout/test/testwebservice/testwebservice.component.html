@@ -1,0 +1,85 @@
+
+<div class="row" >
+    <div class="col col-xl-12 col-lg-12">
+        <div class="card mb-3">
+            <!--<div class="card-header">-->
+            <!--Basic example-->
+            <!--</div>-->
+            <div class="card-body table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>#ID</th>
+                        <th>name</th>
+                        <th>request</th>
+                        <th>response </th>
+                        <th>Action</th>
+                        <!--<th></th>-->
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let testWebServoice of listTestWebSericess">
+                        <th scope="row">{{testWebServoice.id}}</th>
+                        <td>{{testWebServoice.name}}</td>
+                        <td>{{testWebServoice.request}}</td>
+                        <td>{{testWebServoice.reponse}}</td>
+
+                        <td>
+                            <button style="background-color: #007bff" class="btn" (click)="getTestWebServiceById(testWebServoice.id, content2)">
+                                <i class="fa fa-edit" ></i>
+                            </button>
+                            <button style="background-color: red" class="btn" (click)="deleteTestWebService(testWebServoice.id)">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<ng-template #content2 let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title">Ajouter un Test Web Service</h4>
+        <button (click)="d('Cross click')" aria-label="Close" class="close" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="testWebServiceForm" novalidate>
+
+            <fieldset class="form-group">
+                <label>Name</label>
+                <input class="form-control"
+                       placeholder="name" formControlName="name"
+                       [ngClass]="{'error-input': name.invalid}">
+                <div *ngIf="name.invalid">
+                    <small class="form-text text-muted danger"
+                           *ngIf="name.errors.required">
+                        Ce champ est requis.
+                    </small>
+                </div>
+            </fieldset>
+
+            <fieldset class="form-group">
+                <label>Request</label>
+                <input class="form-control" placeholder="Request" formControlName="request"/>
+            </fieldset>
+
+            <fieldset class="form-group">
+                <label>Reponse</label>
+                <input class="form-control" placeholder="Reponse" formControlName="request"/>
+            </fieldset>
+
+
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button (click)="addTestWebService(); c('Close click')" class="btn btn-secondary" type="button">Ajouter</button>
+        <button (click)="c('Close click')" class="btn btn-secondary" type="button">Annuler</button>
+    </div>
+</ng-template>
