@@ -30,8 +30,9 @@ export class LoginComponent implements OnInit {
 
     login() {
         this.authService.authenticate(this.username.value, this.password.value).subscribe(
-            (res: {token: string}) => {
+            (res: {token: string, userRole: string}) => {
                 localStorage.setItem('token', res.token);
+                localStorage.setItem('userRole', res.userRole);
                 localStorage.setItem('isLoggedin', 'true');
                 localStorage.setItem('username', this.username.value);
 

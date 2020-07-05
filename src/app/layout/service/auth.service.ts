@@ -13,8 +13,8 @@ export class AuthService {
     }
 
 
-    authenticate(username: string,password: string): Observable< {token: string}> {
-        return this.http.post<{token: string}>('http://localhost:8080/authenticate',  {
+    authenticate(username: string,password: string): Observable< {token: string, userRole: string}  > {
+        return this.http.post<{token: string, userRole: string}>('http://localhost:8080/authenticate',  {
             username: username,
             password: password
         });

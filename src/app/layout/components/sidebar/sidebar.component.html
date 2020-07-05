@@ -13,19 +13,24 @@
             <span>{{ 'Dashboard' | translate }}</span>
         </a>
 
-        <a [routerLinkActive]="['router-link-active']" [routerLink]="['/charts']" class="list-group-item">
+        <a *ngIf="role === 'admin'" [routerLinkActive]="['router-link-active']" [routerLink]="['/charts']" class="list-group-item">
             <i class="fa fa-fw fa-table"></i>&nbsp;
             <span>{{ 'charts' | translate }}</span>
         </a>
 
-        <a [routerLinkActive]="['router-link-active']" [routerLink]="['/tables']" class="list-group-item">
+        <a *ngIf="role === 'admin'" [routerLinkActive]="['router-link-active']" [routerLink]="['/tables']" class="list-group-item">
             <i class="fa fa-fw fa-table"></i>&nbsp;
             <span>{{ 'Users' | translate }}</span>
         </a>
 
-        <a [routerLinkActive]="['router-link-active']" [routerLink]="['/test']" class="list-group-item">
+        <a *ngIf="role === 'admin'" [routerLinkActive]="['router-link-active']" [routerLink]="['/test']" class="list-group-item">
             <i class="fa fa-fw fa-table"></i>&nbsp;
             <span>{{ 'Tests' | translate }}</span>
+        </a>
+
+        <a *ngIf="role !== 'admin'" [routerLinkActive]="['router-link-active']" [routerLink]="['/execute']" class="list-group-item">
+            <i class="fa fa-fw fa-table"></i>&nbsp;
+            <span>{{ 'Execution des Tests' | translate }}</span>
         </a>
         <!--<a [routerLinkActive]="['router-link-active']" [routerLink]="['/forms']" class="list-group-item">-->
             <!--<i class="fa fa-fw fa-edit"></i>&nbsp;-->

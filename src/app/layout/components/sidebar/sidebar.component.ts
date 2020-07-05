@@ -13,9 +13,15 @@ export class SidebarComponent implements OnInit {
     showMenu: string;
     pushRightClass: string;
 
+    role: string;
+
     @Output() collapsedEvent = new EventEmitter<boolean>();
 
     constructor(private translate: TranslateService, public router: Router) {
+
+        this.role = localStorage.getItem('userRole');
+        console.log(this.role);
+
         this.router.events.subscribe((val) => {
             if (val instanceof NavigationEnd && window.innerWidth <= 992 && this.isToggled()) {
                 this.toggleSidebar();

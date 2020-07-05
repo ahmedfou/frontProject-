@@ -4,7 +4,7 @@
         <div class="col col-sm-6">
             <div class="card mb-3">
                 <div class="card-header">
-                    Bar Chart
+                   Test Chart 1
                 </div>
                 <div class="card-body">
                     <canvas
@@ -19,15 +19,15 @@
                     >
                     </canvas>
                 </div>
-                <div class="card-footer">
-                    <button (click)="randomize()" class="btn btn-info btn-sm">Update</button>
-                </div>
+                <!--<div class="card-footer">-->
+                    <!--<button (click)="randomize()" class="btn btn-info btn-sm">Update</button>-->
+                <!--</div>-->
             </div>
         </div>
         <div class="col col-sm-6">
             <div class="card mb-3">
                 <div class="card-header">
-                    Doughnut Chart
+                    Test Chart 2
                 </div>
                 <div class="card-body">
                     <canvas
@@ -48,7 +48,7 @@
         <div class="col col-sm-6">
             <div class="card mb-3">
                 <div class="card-header">
-                    Radar Chart
+                    Test Web Service Chart 3
                 </div>
                 <div class="card-body">
                     <canvas
@@ -67,7 +67,7 @@
         <div class="col col-sm-6">
             <div class="card mb-3">
                 <div class="card-header">
-                    Pie Chart
+                    Test web service Chart 4
                 </div>
                 <div class="card-body">
                     <canvas
@@ -84,48 +84,48 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col col-sm-6">
-            <div class="card mb-3">
-                <div class="card-header">
-                    Polar Area Chart
-                </div>
-                <div class="card-body">
-                    <canvas
-                        (chartClick)="chartClicked($event)"
-                        (chartHover)="chartHovered($event)"
-                        [chartType]="polarAreaChartType"
-                        [data]="polarAreaChartData"
-                        [labels]="polarAreaChartLabels"
-                        [legend]="polarAreaLegend"
-                        baseChart
-                        height="130px"
-                    >
-                    </canvas>
-                </div>
-            </div>
-        </div>
-        <div class="col col-sm-6">
-            <div class="card mb-3">
-                <div class="card-header">
-                    Line Chart
-                </div>
-                <div class="card-body">
-                    <canvas
-                        (chartClick)="chartClicked($event)"
-                        (chartHover)="chartHovered($event)"
-                        [chartType]="lineChartType"
-                        [colors]="lineChartColors"
-                        [datasets]="lineChartData"
-                        [labels]="lineChartLabels"
-                        [legend]="lineChartLegend"
-                        [options]="lineChartOptions"
-                        baseChart
-                        height="130"
-                    >
-                    </canvas>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!--<div class="row">-->
+        <!--<div class="col col-sm-6">-->
+            <!--<div class="card mb-3">-->
+                <!--<div class="card-header">-->
+                    <!--Polar Area Chart-->
+                <!--</div>-->
+                <!--<div class="card-body">-->
+                    <!--<canvas-->
+                        <!--(chartClick)="chartClicked($event)"-->
+                        <!--(chartHover)="chartHovered($event)"-->
+                        <!--[chartType]="polarAreaChartType"-->
+                        <!--[data]="polarAreaChartData"-->
+                        <!--[labels]="polarAreaChartLabels"-->
+                        <!--[legend]="polarAreaLegend"-->
+                        <!--baseChart-->
+                        <!--height="130px"-->
+                    <!--&gt;-->
+                    <!--</canvas>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="col col-sm-6">-->
+            <!--<div class="card mb-3">-->
+                <!--<div class="card-header">-->
+                    <!--Line Chart-->
+                <!--</div>-->
+                <!--<div class="card-body">-->
+                    <!--<canvas-->
+                        <!--(chartClick)="chartClicked($event)"-->
+                        <!--(chartHover)="chartHovered($event)"-->
+                        <!--[chartType]="lineChartType"-->
+                        <!--[colors]="lineChartColors"-->
+                        <!--[datasets]="lineChartData"-->
+                        <!--[labels]="lineChartLabels"-->
+                        <!--[legend]="lineChartLegend"-->
+                        <!--[options]="lineChartOptions"-->
+                        <!--baseChart-->
+                        <!--height="130"-->
+                    <!--&gt;-->
+                    <!--</canvas>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
 </div>

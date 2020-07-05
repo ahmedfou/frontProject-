@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { LayoutComponent } from './layout.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {LayoutComponent} from './layout.component';
 
 const routes: Routes = [
     {
@@ -15,6 +15,7 @@ const routes: Routes = [
             { path: 'charts', loadChildren: () => import('./charts/charts.module').then((m) => m.ChartsModule) },
             { path: 'tables', loadChildren: () => import('./tables/tables.module').then((m) => m.TablesModule) },
             { path: 'test', loadChildren: () => import('./test/test.module').then((m) => m.TestModule) },
+            { path: 'execute', loadChildren: () => import('./execute/execute.module').then((m) => m.ExecuteModule) },
             { path: 'forms', loadChildren: () => import('./form/form.module').then((m) => m.FormModule) },
             {
                 path: 'bs-element',

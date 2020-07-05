@@ -1,0 +1,120 @@
+<div [@routerTransition]>
+    <app-page-header [heading]="'liste des tests'" [icon]="'fa-table'">
+
+
+    </app-page-header>
+    <div class="row">
+        <div class="dropdown theme-dropdown clearfix" ngbDropdown style="margin-left: 15px;">
+            <button class="btn btn-secondary" ngbDropdownToggle>
+                TYPE TEST
+            </button>
+            <div aria-labelledby="dropdownMenu1" class="dropdown-menu" ngbDropdownMenu>
+                <a class="dropdown-item" (click)=" isTestWebService = false">TEST NORMAL</a>
+                <a class="dropdown-item" (click)="isTestWebService = true">TEST WEB SERVICE</a>
+            </div>
+        </div>
+    </div>
+
+    <!--<div class="row">-->
+        <!--<button *ngIf="!isTestWebService" class="btn btn-primary"-->
+                <!--style="    margin-top: 19px;-->
+    <!--margin-left: 15px;-->
+    <!--margin-right: 15px;">Execute un test normale-->
+        <!--</button>-->
+
+        <!--<button *ngIf="isTestWebService" class="btn btn-primary"-->
+                <!--style="    margin-top: 19px;-->
+    <!--margin-left: 15px;-->
+    <!--margin-right: 15px;">Execute un test web Service-->
+        <!--</button>-->
+    <!--</div>-->
+
+
+    <div class="row" *ngIf="!isTestWebService">
+        <div class="col col-xl-12 col-lg-12">
+            <div class="card mb-3">
+                <!--<div class="card-header">-->
+                <!--Basic example-->
+                <!--</div>-->
+                <div class="card-body table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>#ID</th>
+                            <th>Type</th>
+                            <th>numero Port</th>
+                            <th>base</th>
+                            <th>nom Serveur</th>
+                            <th>Action</th>
+                            <!--<th></th>-->
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let test of listTests">
+                            <th scope="row">{{test.id}}</th>
+                            <td>{{test.type}}</td>
+                            <td>{{test.numeroPort}}</td>
+                            <td>{{test.base}}</td>
+                            <td>{{test.nomServeur}}</td>
+                            <td>
+                                <button style="background-color: #007bff" class="btn"
+                                        (click)="getTestById(test.id)">
+                                    <i class="fa fa-fire"></i>
+                                </button>
+                                <!--<button style="background-color: red" class="btn" (click)="deleteTest(test.id)">-->
+                                    <!--<i class="fa fa-trash"></i>-->
+                                <!--</button>-->
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row" *ngIf="isTestWebService">
+        <div class="col col-xl-12 col-lg-12">
+            <div class="card mb-3">
+                <!--<div class="card-header">-->
+                <!--Basic example-->
+                <!--</div>-->
+                <div class="card-body table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>#ID</th>
+                            <th>name</th>
+                            <th>request</th>
+                            <th>response</th>
+                            <th>Action</th>
+                            <!--<th></th>-->
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let testWebServoice of listTestWebSericess">
+                            <th scope="row">{{testWebServoice.id}}</th>
+                            <td>{{testWebServoice.name}}</td>
+                            <td>{{testWebServoice.request}}</td>
+                            <td>{{testWebServoice.reponse}}</td>
+
+                            <td>
+                                <button style="background-color: #007bff" class="btn"
+                                        (click)="getTestWebServiceById(testWebServoice.id)">
+                                    <i class="fa fa-fire"></i>
+                                </button>
+                                <!--<button style="background-color: red" class="btn"-->
+                                        <!--(click)="deleteTestWebService(testWebServoice.id)">-->
+                                    <!--<i class="fa fa-trash"></i>-->
+                                <!--</button>-->
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
